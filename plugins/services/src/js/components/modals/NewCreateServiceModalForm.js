@@ -3,7 +3,8 @@ import deepEqual from "deep-equal";
 import React, { PropTypes, Component } from "react";
 
 import {
-  findNestedPropertyInObject
+  findNestedPropertyInObject,
+  omit
 } from "../../../../../../src/js/utils/Util";
 import { getContainerNameWithIcon } from "../../utils/ServiceConfigDisplayUtil";
 import { pluralize } from "../../../../../../src/js/utils/StringUtil";
@@ -83,7 +84,22 @@ class NewCreateServiceModalForm extends Component {
     // Hint: When you add something to the state, make sure to update the
     //       shouldComponentUpdate function, since we are trying to reduce
     //       the number of updates as much as possible.
+    // In the Next line we are destructing the config to keep labels as it is and even keep labels with an empty value
+    let { serviceConfig } = ServiceUtil.getServiceJSON(this.props.service);
+    const { labels = {} } = serviceConfig;
 
+    serviceConfig = omit(serviceConfig, ["labels"]);
+
+    let newServiceConfig = Object.assign(
+      {},
+      labels,
+      CreateServiceModalFormUtil.stripEmptyProperties(serviceConfig)
+    );
+    if (Object.keys(labels).length === 0) {
+      newServiceConfig = CreateServiceModalFormUtil.stripEmptyProperties(
+        serviceConfig
+      );
+    }
     this.state = Object.assign(
       {
         appConfig: null,
@@ -96,10 +112,7 @@ class NewCreateServiceModalForm extends Component {
         jsonParser() {}
       },
       this.getNewStateForJSON(
-        CreateServiceModalFormUtil.stripEmptyProperties(
-          ServiceUtil.getServiceJSON(this.props.service)
-        ),
-        false,
+        newServiceConfig,
         this.props.service instanceof PodSpec
       )
     );
@@ -298,7 +311,19 @@ class NewCreateServiceModalForm extends Component {
     });
     const patch = batch.reduce(this.props.jsonConfigReducers, {});
 
-    return CreateServiceModalFormUtil.applyPatch(baseConfig, patch);
+    const newConfig = CreateServiceModalFormUtil.applyPatch(baseConfig, patch);
+    const config = omit(newConfig, ["labels"]);
+    const { labels } = newConfig;
+
+    if (Object.keys(labels).length === 0) {
+      return CreateServiceModalFormUtil.stripEmptyProperties(config);
+    }
+
+    return Object.assign(
+      {},
+      labels,
+      CreateServiceModalFormUtil.stripEmptyProperties(config)
+    );
   }
 
   getErrors() {
