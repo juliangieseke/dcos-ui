@@ -2,6 +2,8 @@ import { routing } from "foundation-ui";
 import { Route, Redirect } from "react-router";
 import { Hooks } from "PluginSDK";
 
+import inspector from "#PLUGINS/inspector/inspector";
+
 import components from "./components";
 import dashboard from "./dashboard";
 import Index from "../pages/Index";
@@ -27,6 +29,7 @@ function getApplicationRoutes() {
       to: Hooks.applyFilter("applicationRedirectRoute", "/dashboard")
     },
     dashboard,
+    inspector,
     services,
     jobs,
     nodes,
@@ -94,6 +97,8 @@ function getRoutes() {
   indexRoute.children = indexRoute.children.concat(
     routing.RoutingService.getDefinition()
   );
+
+  console.log(routes)
 
   return routes;
 }

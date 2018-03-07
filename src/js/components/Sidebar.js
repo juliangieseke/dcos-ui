@@ -22,6 +22,7 @@ const { NavigationService, EventTypes: { NAVIGATION_CHANGE } } = navigation;
 
 const defaultMenuItems = [
   "/dashboard",
+  "/inspector",
   "/services",
   "/jobs",
   "/catalog",

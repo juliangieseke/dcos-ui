@@ -50,7 +50,7 @@ class InspectorPage extends React.Component {
 
 InspectorPage.routeConfig = {
   label: "Inspector",
-  icon: <Icon id="dashboard-inverse" size="small" family="product" />,
+  icon: <Icon id="components-inverse" size="small" family="product" />,
   matches: /^\/inspector/
 };
 

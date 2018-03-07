@@ -1,6 +1,6 @@
 import { Route } from "react-router";
 
-import InspectorPage from "#SRC/InspectorPage";
+import InspectorPage from "./InspectorPage";
 
 const inspectorRoutes = {
   category: "root",
