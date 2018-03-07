@@ -12,13 +12,13 @@ class LinkList extends Component {
       return <div>Error</div>;
     }
 
-    // 3
     const resultsToRender = entries.feed.links;
 
     return (
-      <table>
+      <div>
+        <h3>Results: {Object.keys(resultsToRender).length}</h3>
         {resultsToRender.map(entry => <Entry key={entry.id} entry={entry} />)}
-      </table>
+      </div>
     );
   }
 }

@@ -98,7 +98,7 @@ function getRoutes() {
     routing.RoutingService.getDefinition()
   );
 
-  console.log(routes)
+  console.log(routes);
 
   return routes;
 }
