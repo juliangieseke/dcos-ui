@@ -5,11 +5,11 @@ class LinkList extends Component {
   render() {
     const entries = this.props.entries;
     if (entries && this.props.entries.loading) {
-      return <div>Loading</div>;
+      return <h1>🎱</h1>;
     }
 
     if (entries && entries.error) {
-      return <div>Error</div>;
+      return <h1>💢</h1>;
     }
 
     const resultsToRender = entries.feed.links;
