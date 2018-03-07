@@ -98,8 +98,6 @@ function getRoutes() {
     routing.RoutingService.getDefinition()
   );
 
-  console.log(routes);
-
   return routes;
 }
 

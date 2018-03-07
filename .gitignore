@@ -22,5 +22,5 @@ src/resources/raml
 .chrome/
 .envrc
 .env
-
-app-server/
+server/
+fkp/
