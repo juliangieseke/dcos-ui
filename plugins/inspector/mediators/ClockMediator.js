@@ -3,7 +3,7 @@ import React from "react";
 
 import EntryList from "#PLUGINS/inspector/components/EntryList";
 import { schema } from "../schema/clockSchema";
-import streamClock from "../clients/streamClock";
+import streamClock from "../clients/ClockStream";
 
 const CLOCK_QUERY = `
   subscription {
