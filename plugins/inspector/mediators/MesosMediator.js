@@ -1,12 +1,6 @@
-// import { ApolloProvider, graphql } from "react-apollo";
-// import { ApolloClient } from "apollo-client";
-// import { HttpLink } from "apollo-link-http";
-// import { InMemoryCache } from "apollo-cache-inmemory";
-// import gql from "graphql-tag";
-
 import gql from "graphql-tag";
 import EntryList from "#PLUGINS/inspector/components/EntryList";
-import { graphql } from "react-apollo/index";
+import { graphql } from "react-apollo";
 
 const FEED_QUERY = gql`
   query FeedQuery {

@@ -3,16 +3,13 @@ import React from "react";
 import Icon from "#SRC/js/components/Icon";
 import Page from "#SRC/js/components/Page";
 
-import { ApolloProvider } from "react-apollo";
-
-import FeedMediator from "#PLUGINS/inspector/mediators/FeedMediator";
-import MesosMediator from "#PLUGINS/inspector/mediators/MesosMediator";
-
-import client from "#PLUGINS/inspector/client";
+// import FeedMediator from "#PLUGINS/inspector/mediators/FeedMediator";
+import ClockMediator from "#PLUGINS/inspector/mediators/ClockMediator";
 
 const commands = {
-  feed: () => <FeedMediator />,
-  mesos: () => <MesosMediator />
+  clock: () => <ClockMediator />
+  // feed: () => <FeedMediator />,
+  // mesos: () => <MesosMediator />
 };
 
 const noCommand = (cmd, commands) => {
@@ -37,22 +34,19 @@ class InspectorPage extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     const firstWord = this.state.expression.split(" ")[0];
     const commandSelection =
       commands[firstWord] || noCommand(firstWord, Object.keys(commands));
 
     return (
-      <ApolloProvider client={client}>
-        <Page title="Inspector">
-          <h1>Actions:</h1>
-          <input
-            value={this.state.expression}
-            onChange={e => this.setState({ expression: e.target.value })}
-          />
-          {commandSelection()}
-        </Page>
-      </ApolloProvider>
+      <Page title="Inspector">
+        <h1>Actions:</h1>
+        <input
+          value={this.state.expression}
+          onChange={e => this.setState({ expression: e.target.value })}
+        />
+        {commandSelection()}
+      </Page>
     );
   }
 }

@@ -14,8 +14,6 @@ class Entry extends Component {
       </div>
     );
   }
-
-  act() {}
 }
 
 export default Entry;

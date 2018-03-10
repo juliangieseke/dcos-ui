@@ -1,6 +1,6 @@
 import { Route } from "react-router";
 
-import InspectorPage from "./components/InspectorPage";
+import InspectorPage from "#PLUGINS/inspector/components/InspectorPage";
 
 const inspectorRoutes = {
   category: "root",
@@ -10,4 +10,4 @@ const inspectorRoutes = {
   isInSidebar: true
 };
 
-module.exports = inspectorRoutes;
+export default inspectorRoutes;
