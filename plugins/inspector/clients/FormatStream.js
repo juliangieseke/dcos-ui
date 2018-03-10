@@ -26,4 +26,4 @@ post("default", "en-US");
 
 formatSubject.subscribe(console.log.bind(this));
 
-export default { post, stream: formatSubject };
+export default { formatPost: post, formatStream: formatSubject };
