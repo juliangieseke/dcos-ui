@@ -84,16 +84,16 @@ class CreateServiceModalForm extends Component {
     //       the number of updates as much as possible.
     // In the Next line we are destructing the config to keep labels as it is and even keep labels with an empty value
     let { serviceConfig } = ServiceUtil.getServiceJSON(this.props.service);
-    const { labels = {} } = serviceConfig;
+    const { labels } = serviceConfig || {};
 
     serviceConfig = omit(serviceConfig, ["labels"]);
 
     let newServiceConfig = Object.assign(
       {},
-      labels,
+      labels ? { labels } : {},
       CreateServiceModalFormUtil.stripEmptyProperties(serviceConfig)
     );
-    if (Object.keys(labels).length === 0) {
+    if (Object.keys(labels || {}).length === 0) {
       newServiceConfig = CreateServiceModalFormUtil.stripEmptyProperties(
         serviceConfig
       );
@@ -331,16 +331,16 @@ class CreateServiceModalForm extends Component {
       baseConfigCopy
     );
 
+    const { labels } = newConfig || {};
     const config = omit(newConfig, ["labels"]);
-    const { labels } = newConfig;
 
-    if (Object.keys(labels).length === 0) {
+    if (Object.keys(labels || {}).length === 0) {
       return CreateServiceModalFormUtil.stripEmptyProperties(config);
     }
 
     return Object.assign(
       {},
-      labels,
+      { labels },
       CreateServiceModalFormUtil.stripEmptyProperties(config)
     );
   }
