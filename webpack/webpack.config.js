@@ -28,7 +28,8 @@ module.exports = {
       ),
       "#PLUGINS": path.resolve(__dirname, "../plugins"),
       "#SRC": path.resolve(__dirname, "../src"),
-      "#TESTS": path.resolve(__dirname, "../tests")
+      "#TESTS": path.resolve(__dirname, "../tests"),
+      "#PACKAGES": path.resolve(__dirname, "../packages")
     },
     modules: [
       // include packages
@@ -40,7 +41,7 @@ module.exports = {
     ]
   },
   node: {
-    fs: "empty" // Jison loader fails otherwise
+    fs: "empty" // Json loader fails otherwise
   },
   devServer: {
     // TODO: https://webpack.js.org/configuration/dev-server/#devserver-hot
